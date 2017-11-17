@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="374_Phase1">
+		<CBX_INST_ENTRY INSTANCE_NAME="|Datapath_3Bus_tb|Datapath_3Bus:TheDatapath|PotatoALU:TheALU|IncDec:IncPC|lpm_add_sub:LPM_ADD_SUB_component" CBX_FILE_NAME="add_sub_tih.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Datapath_3Bus_tb|Datapath_3Bus:TheDatapath|PotatoALU:TheALU|AddSub:AdderSubtractor|lpm_add_sub:LPM_ADD_SUB_component" CBX_FILE_NAME="add_sub_8lh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Datapath_3Bus_tb|Datapath_3Bus:TheDatapath|PotatoALU:TheALU|ArithShift:SHLRA|lpm_clshift:LPM_CLSHIFT_component" CBX_FILE_NAME="lpm_clshift_oqe.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Datapath_3Bus_tb|Datapath_3Bus:TheDatapath|PotatoALU:TheALU|IncDec:Negator|lpm_add_sub:LPM_ADD_SUB_component" CBX_FILE_NAME="add_sub_tih.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Datapath_3Bus_tb|Datapath_3Bus:TheDatapath|PotatoALU:TheALU|Rotator:ROTATE|lpm_clshift:LPM_CLSHIFT_component" CBX_FILE_NAME="lpm_clshift_jhc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Datapath_3Bus_tb|Datapath_3Bus:TheDatapath|PotatoALU:TheALU|Shifter:SHLR|lpm_clshift:LPM_CLSHIFT_component" CBX_FILE_NAME="lpm_clshift_9ge.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Datapath_3Bus_tb|Datapath_3Bus:TheDatapath|PotatoALU:TheALU|SigDiv:DIVS|lpm_divide:LPM_DIVIDE_component" CBX_FILE_NAME="lpm_divide_j0r.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Datapath_3Bus_tb|RamMemory:TheMemory|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_e224.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Datapath_3Bus_tb|Datapath_3Bus:TheDatapath|PotatoALU:TheALU|Div:DIVU|lpm_divide:LPM_DIVIDE_component" CBX_FILE_NAME="lpm_divide_per.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

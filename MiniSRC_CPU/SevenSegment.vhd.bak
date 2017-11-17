@@ -1,0 +1,24 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity SevenSegment is
+port	(
+			inputPort : in std_logic_vector(31 downto 0);
+			bankSwitch: in std_logic;
+			
+			digit0 : out std_logic_vector(6 downto 0);
+			digit1 : out std_logic_vector(6 downto 0);
+			digit2 : out std_logic_vector(6 downto 0);
+			digit3 : out std_logic_vector(6 downto 0);
+
+		)
+end entity;
+
+architecture behav of SevenSegment is
+begin
+
+digit0 <= "0111111" when bankSwitch = '0' AND inputPort(3 downto 0) = x"0" else
+
+
+
+end architecture;

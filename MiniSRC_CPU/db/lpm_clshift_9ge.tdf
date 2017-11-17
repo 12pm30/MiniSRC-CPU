@@ -1,0 +1,50 @@
+--lpm_clshift CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" LPM_SHIFTTYPE="LOGICAL" LPM_WIDTH=32 LPM_WIDTHDIST=5 data direction distance overflow result underflow
+--VERSION_BEGIN 13.1 cbx_lpm_clshift 2014:03:12:18:15:29:SJ cbx_mgl 2014:03:12:18:25:18:SJ  VERSION_END
+
+
+-- Copyright (C) 1991-2014 Altera Corporation
+--  Your use of Altera Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files from any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Altera Program License 
+--  Subscription Agreement, Altera MegaCore Function License 
+--  Agreement, or other applicable license agreement, including, 
+--  without limitation, that your use is for the sole purpose of 
+--  programming logic devices manufactured by Altera and sold by 
+--  Altera or its authorized distributors.  Please refer to the 
+--  applicable agreement for further details.
+
+
+
+--synthesis_resources = 
+SUBDESIGN lpm_clshift_9ge
+( 
+	data[31..0]	:	input;
+	direction	:	input;
+	distance[4..0]	:	input;
+	overflow	:	output;
+	result[31..0]	:	output;
+	underflow	:	output;
+) 
+VARIABLE 
+	direction_w[0..0]	: WIRE;
+	inz_w[32..0]	: WIRE;
+	ov_w[31..0]	: WIRE;
+	pad_w[15..0]	: WIRE;
+	sbit_w[191..0]	: WIRE;
+	uf_w[32..0]	: WIRE;
+
+BEGIN 
+	direction_w[] = ( direction);
+	inz_w[] = ( B"0", (data[31..31] # inz_w[32..32]), (data[30..30] # inz_w[31..31]), (data[29..29] # inz_w[30..30]), (data[28..28] # inz_w[29..29]), (data[27..27] # inz_w[28..28]), (data[26..26] # inz_w[27..27]), (data[25..25] # inz_w[26..26]), (data[24..24] # inz_w[25..25]), (data[23..23] # inz_w[24..24]), (data[22..22] # inz_w[23..23]), (data[21..21] # inz_w[22..22]), (data[20..20] # inz_w[21..21]), (data[19..19] # inz_w[20..20]), (data[18..18] # inz_w[19..19]), (data[17..17] # inz_w[18..18]), (data[16..16] # inz_w[17..17]), (data[15..15] # inz_w[16..16]), (data[14..14] # inz_w[15..15]), (data[13..13] # inz_w[14..14]), (data[12..12] # inz_w[13..13]), (data[11..11] # inz_w[12..12]), (data[10..10] # inz_w[11..11]), (data[9..9] # inz_w[10..10]), (data[8..8] # inz_w[9..9]), (data[7..7] # inz_w[8..8]), (data[6..6] # inz_w[7..7]), (data[5..5] # inz_w[6..6]), (data[4..4] # inz_w[5..5]), (data[3..3] # inz_w[4..4]), (data[2..2] # inz_w[3..3]), (data[1..1] # inz_w[2..2]), (data[0..0] # inz_w[1..1]));
+	ov_w[] = ( ((distance[4..4] & sbit_w[144..144]) # ov_w[30..30]), ((distance[4..4] & sbit_w[145..145]) # ov_w[29..29]), ((distance[4..4] & sbit_w[146..146]) # ov_w[28..28]), ((distance[4..4] & sbit_w[147..147]) # ov_w[27..27]), ((distance[4..4] & sbit_w[148..148]) # ov_w[26..26]), ((distance[4..4] & sbit_w[149..149]) # ov_w[25..25]), ((distance[4..4] & sbit_w[150..150]) # ov_w[24..24]), ((distance[4..4] & sbit_w[151..151]) # ov_w[23..23]), ((distance[4..4] & sbit_w[152..152]) # ov_w[22..22]), ((distance[4..4] & sbit_w[153..153]) # ov_w[21..21]), ((distance[4..4] & sbit_w[154..154]) # ov_w[20..20]), ((distance[4..4] & sbit_w[155..155]) # ov_w[19..19]), ((distance[4..4] & sbit_w[156..156]) # ov_w[18..18]), ((distance[4..4] & sbit_w[157..157]) # ov_w[17..17]), ((distance[4..4] & sbit_w[158..158]) # ov_w[16..16]), ((distance[4..4] & sbit_w[159..159]) # ov_w[15..15]), ((distance[3..3] & sbit_w[120..120]) # ov_w[14..14]), ((distance[3..3] & sbit_w[121..121]) # ov_w[13..13]), ((distance[3..3] & sbit_w[122..122]) # ov_w[12..12]), ((distance[3..3] & sbit_w[123..123]) # ov_w[11..11]), ((distance[3..3] & sbit_w[124..124]) # ov_w[10..10]), ((distance[3..3] & sbit_w[125..125]) # ov_w[9..9]), ((distance[3..3] & sbit_w[126..126]) # ov_w[8..8]), ((distance[3..3] & sbit_w[127..127]) # ov_w[7..7]), ((distance[2..2] & sbit_w[92..92]) # ov_w[6..6]), ((distance[2..2] & sbit_w[93..93]) # ov_w[5..5]), ((distance[2..2] & sbit_w[94..94]) # ov_w[4..4]), ((distance[2..2] & sbit_w[95..95]) # ov_w[3..3]), ((distance[1..1] & sbit_w[62..62]) # ov_w[2..2]), ((distance[1..1] & sbit_w[63..63]) # ov_w[1..1]), ((distance[0..0] & sbit_w[31..31]) # ov_w[0..0]), B"0");
+	overflow = (ov_w[31..31] & (! direction_w[0..0]));
+	pad_w[] = B"0000000000000000";
+	result[31..0] = sbit_w[191..160];
+	sbit_w[] = ( ((((distance[4..4] & (! direction_w[])) & ( sbit_w[143..128], pad_w[15..0])) # ((distance[4..4] & direction_w[]) & ( pad_w[15..0], sbit_w[159..144]))) # ((! distance[4..4]) & sbit_w[159..128])), ((((distance[3..3] & (! direction_w[])) & ( sbit_w[119..96], pad_w[7..0])) # ((distance[3..3] & direction_w[]) & ( pad_w[7..0], sbit_w[127..104]))) # ((! distance[3..3]) & sbit_w[127..96])), ((((distance[2..2] & (! direction_w[])) & ( sbit_w[91..64], pad_w[3..0])) # ((distance[2..2] & direction_w[]) & ( pad_w[3..0], sbit_w[95..68]))) # ((! distance[2..2]) & sbit_w[95..64])), ((((distance[1..1] & (! direction_w[])) & ( sbit_w[61..32], pad_w[1..0])) # ((distance[1..1] & direction_w[]) & ( pad_w[1..0], sbit_w[63..34]))) # ((! distance[1..1]) & sbit_w[63..32])), ((((distance[0..0] & (! direction_w[])) & ( sbit_w[30..0], pad_w[0..0])) # ((distance[0..0] & direction_w[]) & ( pad_w[0..0], sbit_w[31..1]))) # ((! distance[0..0]) & sbit_w[31..0])), data[]);
+	uf_w[] = ( B"0", (sbit_w[191..191] # uf_w[32..32]), (sbit_w[190..190] # uf_w[31..31]), (sbit_w[189..189] # uf_w[30..30]), (sbit_w[188..188] # uf_w[29..29]), (sbit_w[187..187] # uf_w[28..28]), (sbit_w[186..186] # uf_w[27..27]), (sbit_w[185..185] # uf_w[26..26]), (sbit_w[184..184] # uf_w[25..25]), (sbit_w[183..183] # uf_w[24..24]), (sbit_w[182..182] # uf_w[23..23]), (sbit_w[181..181] # uf_w[22..22]), (sbit_w[180..180] # uf_w[21..21]), (sbit_w[179..179] # uf_w[20..20]), (sbit_w[178..178] # uf_w[19..19]), (sbit_w[177..177] # uf_w[18..18]), (sbit_w[176..176] # uf_w[17..17]), (sbit_w[175..175] # uf_w[16..16]), (sbit_w[174..174] # uf_w[15..15]), (sbit_w[173..173] # uf_w[14..14]), (sbit_w[172..172] # uf_w[13..13]), (sbit_w[171..171] # uf_w[12..12]), (sbit_w[170..170] # uf_w[11..11]), (sbit_w[169..169] # uf_w[10..10]), (sbit_w[168..168] # uf_w[9..9]), (sbit_w[167..167] # uf_w[8..8]), (sbit_w[166..166] # uf_w[7..7]), (sbit_w[165..165] # uf_w[6..6]), (sbit_w[164..164] # uf_w[5..5]), (sbit_w[163..163] # uf_w[4..4]), (sbit_w[162..162] # uf_w[3..3]), (sbit_w[161..161] # uf_w[2..2]), (sbit_w[160..160] # uf_w[1..1]));
+	underflow = ((direction_w[0..0] & (! uf_w[0..0])) & inz_w[0..0]);
+END;
+--VALID FILE

@@ -1,0 +1,33 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity arr_mult_bit_tb is
+end entity;
+
+architecture fucked of arr_mult_bit_tb is
+
+signal m, q : std_logic_vector(7 downto 0);
+signal p : std_logic_vector(15 downto 0);
+
+COMPONENT arr_bit_mult
+	PORT
+	(
+		m_in		:	 IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		q_in		:	 IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		p_out		:	 OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+begin
+
+m := "00011001";
+q := "00000010";
+
+TestMult : arr_bit_mult port map(
+			m_in => m,
+			q_in => q,
+			p_out => p
+			);
+
+
+end architecture;

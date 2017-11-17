@@ -1,0 +1,42 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity SelectDecode_3bus is
+port(	ir_in : in std_logic_vector(31 downto 0);
+		c_sx : out std_logic_vector(31 downto 0);
+		gRA, gRB, gRC, rIN, rOUT, ba_OUT : in std_logic;
+		a_sel_out, b_sel_out : out std_logic_vector(3 downto 0);
+		c_r0, c_r1, c_r2, c_r3, c_r4, c_r5, c_r6, c_r7, c_r8, c_r9, c_r10, c_r11, c_r12, c_r13, c_r14, c_r15 : out std_logic;
+		);
+end entity;
+
+architecture swag of ControlUnit_3bus is
+
+begin
+
+c_sx(17 downto 0) <= ir_in(17 downto 0);
+c_sx(31 downto 18) <= (others => 1) if ir_in(18) = 1 else (others => 0);
+
+a_sel_out <= ir_in(22 downto 19);
+b_sel_out <= ir_in(18 downto 15);
+
+c_r0 <= '1' if ir_in(26 downto 23) = "0000" else '0';
+c_r1 <= '1' if ir_in(26 downto 23) = "0001" else '0';
+c_r2 <= '1' if ir_in(26 downto 23) = "0010" else '0';
+c_r3 <= '1' if ir_in(26 downto 23) = "0011" else '0';
+c_r4 <= '1' if ir_in(26 downto 23) = "0100" else '0';
+c_r5 <= '1' if ir_in(26 downto 23) = "0101" else '0';
+c_r6 <= '1' if ir_in(26 downto 23) = "0110" else '0';
+c_r7 <= '1' if ir_in(26 downto 23) = "0111" else '0';
+c_r8 <= '1' if ir_in(26 downto 23) = "1000" else '0';
+c_r9 <= '1' if ir_in(26 downto 23) = "1001" else '0';
+c_r10 <= '1' if ir_in(26 downto 23) = "1010" else '0';
+c_r11 <= '1' if ir_in(26 downto 23) = "1011" else '0';
+c_r12 <= '1' if ir_in(26 downto 23) = "1100" else '0';
+c_r13 <= '1' if ir_in(26 downto 23) = "1101" else '0';
+c_r14 <= '1' if ir_in(26 downto 23) = "1110" else '0';
+c_r15 <= '1' if ir_in(26 downto 23) = "1111" else '0';
+
+
+
+end architecture;

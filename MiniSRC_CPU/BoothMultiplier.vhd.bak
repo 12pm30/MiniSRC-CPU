@@ -1,0 +1,160 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_arith.all;
+
+entity BoothMultiplier is
+	port ( m_in,q_in : in std_logic_vector(31 downto 0);
+			result_out : out std_logic_vector(63 downto 0);
+			clk, start , reset: in std_logic;
+			done : out std_logic);
+end entity;
+
+
+architecture operation of BoothMultiplier is
+
+
+
+function tc_neg (input : std_logic_vector)
+	return std_logic_vector is
+begin
+	return (unsigned(NOT input) + '1');
+end;
+	
+function sgn_xtnd (input : std_logic_vector(31 downto 0))
+	return std_logic_vector is
+	variable tmp : std_logic_vector(63 downto 0);
+begin
+	tmp(31 downto 0) := input;
+
+	if input(31) = '1' then
+		tmp(63 downto 32) := "11111111111111111111111111111111";
+	else
+		tmp(63 downto 32) := "00000000000000000000000000000000";
+	end if;
+	
+	return tmp;
+end;
+
+
+begin
+
+swag : process(clk,reset)
+
+
+variable t_o, t_z, n : std_logic_vector(16 downto 0);
+variable result, m_tmp, m_sgn : std_logic_vector(63 downto 0);
+variable state : bit_vector(1 downto 0);
+variable cycle : integer := 0;
+
+begin
+	if reset = '1' then
+		cycle := 0;
+		done <= '1';
+		state := "00";
+	elsif rising_edge(clk) then
+		if state = "00" then
+			n(0) := q_in(1);
+			t_z(0) := q_in(0) XOR q_in(-1);
+			t_o(0) := q_in(1) OR (q_in(0) AND q_in(-1));
+			n(1) := q_in(3);
+			t_z(1) := q_in(2) XOR q_in(1);
+			t_o(1) := q_in(3) OR (q_in(2) AND q_in(1));
+			n(2) := q_in(5);
+			t_z(2) := q_in(4) XOR q_in(3);
+			t_o(2) := q_in(5) OR (q_in(4) AND q_in(3));
+			n(3) := q_in(7);
+			t_z(3) := q_in(6) XOR q_in(5);
+			t_o(3) := q_in(7) OR (q_in(6) AND q_in(5));
+			n(4) := q_in(9);
+			t_z(4) := q_in(8) XOR q_in(7);
+			t_o(4) := q_in(9) OR (q_in(8) AND q_in(7));
+			n(5) := q_in(11);
+			t_z(5) := q_in(10) XOR q_in(9);
+			t_o(5) := q_in(11) OR (q_in(10) AND q_in(9));
+			n(6) := q_in(13);
+			t_z(6) := q_in(12) XOR q_in(11);
+			t_o(6) := q_in(13) OR (q_in(12) AND q_in(11));
+			n(7) := q_in(15);
+			t_z(7) := q_in(14) XOR q_in(13);
+			t_o(7) := q_in(15) OR (q_in(14) AND q_in(13));
+			n(8) := q_in(17);
+			t_z(8) := q_in(16) XOR q_in(15);
+			t_o(8) := q_in(17) OR (q_in(16) AND q_in(15));
+			n(9) := q_in(19);
+			t_z(9) := q_in(18) XOR q_in(17);
+			t_o(9) := q_in(19) OR (q_in(18) AND q_in(17));
+			n(10) := q_in(21);
+			t_z(10) := q_in(20) XOR q_in(19);
+			t_o(10) := q_in(21) OR (q_in(20) AND q_in(19));
+			n(11) := q_in(23);
+			t_z(11) := q_in(22) XOR q_in(21);
+			t_o(11) := q_in(23) OR (q_in(22) AND q_in(21));
+			n(12) := q_in(25);
+			t_z(12) := q_in(24) XOR q_in(23);
+			t_o(12) := q_in(25) OR (q_in(24) AND q_in(23));
+			n(13) := q_in(27);
+			t_z(13) := q_in(26) XOR q_in(25);
+			t_o(13) := q_in(27) OR (q_in(26) AND q_in(25));
+			n(14) := q_in(29);
+			t_z(14) := q_in(28) XOR q_in(27);
+			t_o(14) := q_in(29) OR (q_in(28) AND q_in(27));
+			n(15) := q_in(31);
+			t_z(15) := q_in(30) XOR q_in(29);
+			t_o(15) := q_in(31) OR (q_in(30) AND q_in(29));
+			m_sgn := sgn_xtnd(m_in);
+			
+			if start = '1' then
+				state := "01";
+				cycle := 0;
+				result := result xor result;
+				done <= '0';
+			end if;
+		elsif state = "01" then
+			if cycle < 16 then
+			
+				 --shift the sign extended value enough spaces
+				 --m_tmp := m_sgn sll (2 * cycle);
+				 
+				 m_tmp := std_logic_vector(shl(unsigned(m_sgn),conv_unsigned(2*cycle,32)));
+				 
+				 if t_o(cycle) = '1' then
+					--m_tmp * 2 based on recoding table
+					--m_tmp := m_tmp sll 1;
+					m_tmp := std_logic_vector(shl(unsigned(m_tmp),"1"));
+				 elsif t_z(cycle) = '1' then
+					--dont do shit here, m_tmp * 1
+				 else
+					m_tmp := m_tmp XOR m_tmp; -- zero out m_tmp
+				 end if;
+				 
+				 --negate tc based on recoding table
+				 if n(cycle) = '1' then
+					m_tmp := tc_neg(m_tmp);
+				 end if;
+				 
+				 result := unsigned(result) + unsigned(m_tmp);
+				 
+				 cycle := cycle + 1;
+				 
+			else
+				state := "10";
+			end if;
+		elsif state = "10" then
+			result_out <= result;
+			done <= '1';
+			state := "00";
+		end if;
+	end if;
+
+
+end process;
+
+
+end architecture;
+
+
+	
+	
+	
+	
+	

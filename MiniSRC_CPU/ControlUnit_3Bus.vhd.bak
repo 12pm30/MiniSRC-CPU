@@ -1,0 +1,11 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+
+entity ControlUnit_3Bus is
+port (
+			c_r0, c_r1, c_r2, c_r3, c_r4, c_r5, c_r6, c_r7, c_r8, c_r9, c_r10, c_r11, c_r12, c_r13, c_r14, c_r15, c_hilo, c_ir, c_pc : out std_logic;
+			
+			
+		);
+end entity;

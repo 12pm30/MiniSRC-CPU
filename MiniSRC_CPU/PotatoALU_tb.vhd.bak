@@ -1,0 +1,12 @@
+Library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+
+entity PotatoALU_tb is
+end entity;
+
+architecture yoloswag of PotatoALU_tb is
+
+signal a, b, c_hi, c_low : std_logic_vector(31 downto 0);
+signal fsel : std_logic_vector(4 downto 0);
+

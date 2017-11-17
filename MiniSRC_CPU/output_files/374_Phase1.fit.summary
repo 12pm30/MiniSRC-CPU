@@ -1,0 +1,19 @@
+Fitter Status : Successful - Tue Mar 29 12:33:12 2016
+Quartus II 64-Bit Version : 13.1.4 Build 182 03/12/2014 SJ Web Edition
+Revision Name : 374_Phase1
+Top-level Entity Name : Datapath_3bus_tb
+Family : Cyclone V
+Device : 5CSEMA5F31C6
+Timing Models : Final
+Logic utilization (in ALMs) : 6,345 / 32,070 ( 20 % )
+Total registers : 650
+Total pins : 41 / 457 ( 9 % )
+Total virtual pins : 0
+Total block memory bits : 16,384 / 4,065,280 ( < 1 % )
+Total DSP Blocks : 0 / 87 ( 0 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI TX Channels : 0
+Total PLLs : 1 / 6 ( 17 % )
+Total DLLs : 0 / 4 ( 0 % )

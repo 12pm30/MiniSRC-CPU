@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file path="ClockGenerator_sim/ClockGenerator.vho" type="VHDL" />
+ <topLevel name="ClockGenerator" />
+ <deviceFamily name="cyclonev" />
+</simPackage>

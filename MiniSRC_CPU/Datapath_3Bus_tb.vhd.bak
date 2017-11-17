@@ -1,0 +1,66 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Datapath_3bus_tb is
+end entity;
+
+
+architecture yolo of Datapath_3bus_tb is
+
+signal clk : std_logic := '0';
+
+signal a, b, c, pc, ir, ma, md, r0, r1, r2, r3, r4, r5, r6, r7, md : std_LOGIC_VECTOR(31 downto 0);
+signal a_bus, b_bus, fcn_sel : std_LOGIC_VECTOR(4 downto 0);
+signal c_r0, c_r1, c_r2, c_r3, c_r4, c_r5, c_r6, c_r7, c_md, c_ma, 
+
+COMPONENT Datapath_3Bus
+	PORT
+	(
+		a_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		b_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		c_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		pc_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		ir_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		ma_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		md_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		r0_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		r1_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		r2_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		r3_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		r4_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		r5_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		r6_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		r7_out		:	 OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		md_in		:	 IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		a_bus_sel		:	 IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+		b_bus_sel		:	 IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+		c_r0		:	 IN STD_LOGIC;
+		c_r1		:	 IN STD_LOGIC;
+		c_r2		:	 IN STD_LOGIC;
+		c_r3		:	 IN STD_LOGIC;
+		c_r4		:	 IN STD_LOGIC;
+		c_r5		:	 IN STD_LOGIC;
+		c_r6		:	 IN STD_LOGIC;
+		c_r7		:	 IN STD_LOGIC;
+		c_r8		:	 IN STD_LOGIC;
+		c_r9		:	 IN STD_LOGIC;
+		c_r10		:	 IN STD_LOGIC;
+		c_r11		:	 IN STD_LOGIC;
+		c_r12		:	 IN STD_LOGIC;
+		c_r13		:	 IN STD_LOGIC;
+		c_r14		:	 IN STD_LOGIC;
+		c_r15		:	 IN STD_LOGIC;
+		c_hilo		:	 IN STD_LOGIC;
+		c_IR		:	 IN STD_LOGIC;
+		c_PC		:	 IN STD_LOGIC;
+		c_MA		:	 IN STD_LOGIC;
+		c_MD		:	 IN STD_LOGIC;
+		ma_read		:	 IN STD_LOGIC;
+		md_read		:	 IN STD_LOGIC;
+		clk		:	 IN STD_LOGIC;
+		rst		:	 IN STD_LOGIC;
+		fsel		:	 IN STD_LOGIC_VECTOR(4 DOWNTO 0)
+	);
+END COMPONENT;
+
+begin

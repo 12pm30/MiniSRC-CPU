@@ -1,0 +1,6 @@
+Library ieee;
+use ieee.std_logic_1164.all;
+
+entity BoothMultiplier_tb is
+end entity;
+

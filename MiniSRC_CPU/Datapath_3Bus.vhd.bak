@@ -1,0 +1,12 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity Datapath_3Bus is
+port 
+(
+		a_r0, a_r1, a_r2, a_r3, a_r4, a_r5, a_r6, a_r7, a_r8, a_r9, a_r10, a_r11, a_r12, a_r13, a_r14, a_r15, a_hi, a_lo : in std_logic;
+		b_r0, b_r1, b_r2, b_r3, b_r4, b_r5, b_r6, b_r7, b_r8, b_r9, b_r10, b_r11, b_r12, b_r13, b_r14, b_r15, b_hi, b_lo : in std_logic;
+		b_IR, b_PC, b_MD, 
+
+);
+end entity;
